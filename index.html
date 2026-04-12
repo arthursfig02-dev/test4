@@ -1,0 +1,1121 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>Reu. Pública</title>
+  </head>
+  <style>
+      :root {
+      --navy: #1e3a6e;
+      --navy-dark: #162c54;
+      --navy-light: #7098d52a;
+      --gold: #c8a84b;
+      --gold-light: #e2c97e;
+      --bg: #f4f2ee;
+      --white: #ffffff;
+      --text: #1a1a2e;
+      --border: #c5bfb0;
+      --cell-bg: #eef1f7;
+      --teal: #237db1cc;
+      --teal-dark: #2896d4;
+    }
+
+    * {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+
+      background-color: var(--bg);
+    }
+
+    header {
+      display: flex;
+      justify-content: right;
+      align-items: center;
+      height: 52px;
+      background-color: #0B1C2D;
+      border-radius: 0 0 0 30px;
+    }
+
+    header h1 {
+      font-size: 22px;
+      color: var(--white);
+      text-shadow: 1px 1px 3px var(--gold);
+      letter-spacing: 2px;
+    }
+
+    .btn{
+      margin-right: 20px;
+    }
+
+    .btn button{
+      width: 140px;
+      height: 40px;
+      border: none;
+      border-radius: 10px;
+      background-color: #2F6FED;
+      color: #ffff;
+      font-size: 16px;
+      font-weight: 500;
+      text-shadow: 2px 2px 5px black;
+    }
+
+    .btn button:hover{
+      background-color: #1C54C2;
+    }
+
+    .acao{
+      
+    }
+
+
+    /* ===== EDITOR ===== */
+    .editor {
+      margin: 10px auto;
+      padding: 1rem;
+      width:90% ;
+      box-shadow: 2px 2px 8px rgba(26, 26, 46, 0.3);
+      border-radius: 15px;
+      background-color: var(--cell-bg);
+    }
+
+    .semana {
+      margin-top: 15px;
+    }
+
+    .campo {
+      background-color: var(--border);
+      border-radius: 15px;
+      padding: 15px 0 20px 0;
+      margin-bottom: 10px;
+    }
+
+    .titu p {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--navy-dark);
+      padding: 4px 0;
+    }
+    .titu hr {
+      border: 2px solid var(--gold);
+      border-radius: 5px;
+      box-shadow: 1px 1px 1px var(--gold-light);
+      margin-bottom: 5px;
+    }
+
+    .bloco {
+      margin-top: 5px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .bloco label {
+      width: 90%;
+      margin: 0 auto;
+      font-size: 18px;
+      margin-top: 6px;
+      color: var(--navy-dark);
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .bloco input {
+      padding: 10px 12px;
+      width: 90%;
+      margin: 3px auto;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    .bloco input:focus {
+      outline: 2px solid var(--navy-light);
+    }
+
+    .add {
+      margin-bottom: 8px;
+    }
+
+    .nomes-adicionados {
+      width: 90%;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-top: 4px;
+    }
+
+    .nome-tag {
+      background: var(--navy-light);
+      color: white;
+      border-radius: 12px;
+      padding: 2px 8px;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .nome-tag button {
+      background: none !important;
+      border: none !important;
+      color: white;
+      cursor: pointer;
+      font-size: 14px;
+      line-height: 1;
+      padding: 0 !important;
+      box-shadow: none !important;
+      width: auto !important;
+      margin: 0 !important;
+    }
+
+    .bloco button {
+      color: var(--navy-dark);
+      font-weight: 600;
+      padding: 6px;
+      width: 90%;
+      margin: 5px auto;
+      background-color: var(--gold-light);
+      border: none;
+      border-radius: 20px;
+      box-shadow: 2px 2px 5px var(--navy-dark);
+      cursor: pointer;
+      display: block;
+    }
+
+    .bloco button:hover {
+      background-color: var(--gold);
+      transition: background 0.3s;
+    }
+
+    .btn-add-sem {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 12px;
+    }
+
+    .btn-add-sem button {
+      padding: 8px 16px;
+      border-radius: 10px;
+      background-color: var(--gold);
+      color: var(--navy-dark);
+      font-weight: 700;
+      border: 1px solid var(--border);
+      cursor: pointer;
+    }
+
+    .btn-add-sem button:hover {
+      background-color: var(--gold-light);
+      transition: background 0.3s;
+    }
+
+    .btn-exportar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      margin: 10px 0 20px;
+    }
+
+    button.exp {
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 14px;
+      transition: opacity 0.2s;
+    }
+
+    button.exp:hover {
+      opacity: 0.85;
+    }
+
+    button#exp-img {
+      color: var(--white);
+      background-color: var(--navy-dark);
+      border: none;
+    }
+    button#exp-pdf {
+      color: var(--navy-dark);
+      background-color: var(--gold);
+      border: none;
+    }
+
+    /* ===== PRE-VISUALIZAÃ‡ÃƒO ===== */
+    .previsu {
+      display: none;
+      width: 210mm;
+      height: 297mm;
+      background-color: var(--white);
+      border: 2px solid #aaa;
+      padding: 0.5cm;
+    }
+
+    .previsu .titu-prev {
+      margin-bottom: 6px;
+    }
+
+    .previsu p.des {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24pt;
+      font-weight: 600;
+      background-color: var(--teal);
+      text-shadow: 1px 1px 4px var(--teal-dark);
+      border-radius: 0 0 0 40px;
+      height: 1.2cm;
+      letter-spacing: 2px;
+    }
+
+    .previsu .cong-bar {
+      margin-top: -2px;
+      margin-left: auto;
+      font-size: 13pt;
+      font-weight: 500;
+      background-color: var(--teal);
+      text-shadow: 1px 1px 4px var(--teal-dark);
+      border-radius: 0 0 0 40px;
+      height: 0.8cm;
+      width: 125mm;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding-left: 14px;
+      border-bottom: 2px solid black;
+    }
+
+    .mes-ano {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-right: 120mm;
+
+    }
+
+
+    p.mes {
+      font-size: 18pt;
+      font-weight: 700;
+      letter-spacing: 3px;
+    }
+    p.ano {
+      font-size: 16pt;
+      font-weight: 400;
+      color: #555;
+    }
+
+    .img-pre{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    img{
+      width: 9cm;
+    }
+
+    /* Tabela de semanas */
+    .tabela-wrapper {
+      hwi
+
+    }
+
+    .semana-bloco {
+      margin-bottom: 0.2cm;
+    }
+
+    table.semanas-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12pt;
+      table-layout: auto;
+    }
+
+    table.semanas-table tr.semana-titulo th {
+      background-color: var(--navy-light);
+      color: var(--text);
+      text-align: left;
+      padding: 3px 7px;
+      border: 1px solid #999;
+      font-size: 12pt;
+      letter-spacing: 1px;
+    }
+
+    table.semanas-table td {
+      border: 1px solid #bbb;
+      padding: 2px 7px;
+      vertical-align: middle;
+      font-size: 11pt;
+      background-color: #fff;
+      min-width: 30mm;
+    }
+
+    table.semanas-table td.cat-label {
+      background-color: #e8eef7;
+      color: var(--navy-dark);
+      font-weight: 700;
+      font-size: 12pt;
+      text-align: right;
+      white-space: nowrap;
+      min-width: 0;
+      width: 1%;
+      padding-right: 8px;
+    }
+
+
+
+    @media screen and (min-width: 1200px) {
+      main {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 10px;
+        background-color: #E9ECEF;
+      }
+
+      .editor {
+        margin: 10px 0;
+        width: 380px;
+        flex-shrink: 0;
+      }
+
+      .previsu {
+        display: block;
+        flex-shrink: 0;
+      }
+
+      .btn-exportar {
+        margin: 0 0 15px;
+      }
+    }
+
+    /* Toast notification */
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--navy-dark);
+      color: white;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 14px;
+      opacity: 0;
+      transition: opacity 0.3s;
+      z-index: 9999;
+      pointer-events: none;
+    }
+
+    .toast.show {
+      opacity: 1;
+    }
+
+    /* Loading overlay */
+    #loading-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(22, 44, 84, 0.7);
+      z-index: 10000;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 16px;
+      color: white;
+      font-size: 16px;
+    }
+
+    #loading-overlay.show {
+      display: flex;
+    }
+
+    .spinner {
+      width: 48px;
+      height: 48px;
+      border: 5px solid var(--gold-light);
+      border-top-color: var(--gold);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* ===== BURGER MENU ===== */
+    .btn {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .btn button {
+      cursor: pointer;
+    }
+
+    .burger-btn {
+      display: none;
+      background: none !important;
+      border: none !important;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      margin-right: 20px;
+      padding: 4px 8px;
+      width: auto !important;
+      height: auto !important;
+      border-radius: 6px !important;
+      text-shadow: none !important;
+      box-shadow: none !important;
+    }
+
+    .burger-btn:hover {
+      background-color: rgba(255,255,255,0.15) !important;
+    }
+
+    .burger-menu {
+      display: none;
+      position: fixed;
+      top: 52px;
+      right: 0;
+      background-color: #0B1C2D;
+      border-radius: 0 0 0 12px;
+      box-shadow: -3px 3px 10px rgba(0,0,0,0.4);
+      z-index: 9998;
+      flex-direction: column;
+      min-width: 200px;
+    }
+
+    .burger-menu.open {
+      display: flex;
+    }
+
+    .burger-menu button {
+      background: none !important;
+      border: none !important;
+      border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+      color: white !important;
+      font-size: 15px;
+      font-weight: 500;
+      padding: 14px 20px !important;
+      text-align: left;
+      cursor: pointer;
+      display: flex !important;
+      align-items: center;
+      gap: 10px;
+      width: 100% !important;
+      text-shadow: none !important;
+      box-shadow: none !important;
+      border-radius: 0 !important;
+    }
+
+    .burger-menu button:hover {
+      background-color: rgba(47, 111, 237, 0.4) !important;
+    }
+
+    .burger-menu button:last-child {
+      border-bottom: none !important;
+    }
+
+    @media screen and (max-width: 768px) {
+      .btn {
+        display: none;
+      }
+      .burger-btn {
+        display: block;
+      }
+    }
+  </style>
+  <body>
+    <header>
+      <div class="title"></div>
+      <div class="btn">
+        <button class="acao" id="hdr-salvar"><i class="fa-solid fa-cloud-arrow-up"></i> Salvar</button>
+        <button class="acao" id="hdr-carregar"><i class="fa-solid fa-cloud-arrow-down"></i> Carregar</button>
+        <button class="acao" id="hdr-preview"><i class="fa-solid fa-eye"></i> Pré-Visualizar</button>
+        <button class="acao" id="hdr-imprimir"><i class="fa-solid fa-print"></i> Imprimir</button>
+        <button class="acao" id="hdr-pdf"><i class="fa-solid fa-file-pdf"></i> Baixar PDF</button>
+        <button class="acao" id="hdr-foto"><i class="fa-solid fa-image"></i> Baixar Foto</button>
+      </div>
+      <button class="burger-btn" id="burger-btn"><i class="fa-solid fa-bars"></i></button>
+    </header>
+
+    <div class="burger-menu" id="burger-menu">
+      <button id="mob-salvar"><i class="fa-solid fa-cloud-arrow-up"></i> Salvar</button>
+      <button id="mob-carregar"><i class="fa-solid fa-cloud-arrow-down"></i> Carregar</button>
+      <button id="mob-preview"><i class="fa-solid fa-eye"></i> Pré-Visualizar</button>
+      <button id="mob-imprimir"><i class="fa-solid fa-print"></i> Imprimir</button>
+      <button id="mob-pdf"><i class="fa-solid fa-file-pdf"></i> Baixar PDF</button>
+      <button id="mob-foto"><i class="fa-solid fa-image"></i> Baixar Foto</button>
+    </div>
+
+    <main>
+      <!-- EDITOR -->
+      <section>
+        <article class="editor">
+          <div class="cabecalho">
+            <div class="bloco titu">
+              <p>Informações Gerais</p>
+              <hr />
+            </div>
+            <div class="bloco">
+              <label>CONGREGAÇÃO</label>
+              <input
+                id="inp-cong"
+                type="text"
+                placeholder="Nome da Congregação"
+              />
+            </div>
+            <div class="bloco">
+              <label>MÊS</label>
+              <input id="inp-mes" type="text" placeholder="ex: Março" />
+            </div>
+            <div class="bloco">
+              <label>ANO</label>
+              <input id="inp-ano" type="text" placeholder="ex: 2026" />
+            </div>
+          </div>
+
+          <div class="semana">
+            <div class="bloco titu">
+              <p>Semanas</p>
+              <hr />
+            </div>
+            <div id="semanas-container"></div>
+            <div class="btn-add-sem">
+              <button id="btn-add-sem">+ Adicionar Semana</button>
+            </div>
+          </div>
+        </article>
+
+
+      </section>
+
+      <!-- PRÉ-VISUALIZAÇÃO -->
+      <section class="previsu" id="previsu">
+        <div class="titu-prev">
+          <p class="des">Programação Reunião Pública</p>
+          <div class="cong-bar">Congregação: <span id="prev-cong"></span></div>
+        </div>
+        <div class="mes-ano">
+          <p class="mes" id="prev-mes"></p>
+          <p class="ano" id="prev-ano"></p>
+        </div>
+        <div class="img-pre">
+          <div><img src="orador.png" alt="" /></div>
+          <div class="tabela-wrapper" id="prev-tabelas"></div>
+        </div>
+      </section>
+    </main>
+
+    <div class="toast" id="toast"></div>
+    <div id="loading-overlay">
+      <div class="spinner"></div>
+      <span id="loading-msg">Gerando arquivo...</span>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <script>
+      // ==============================
+      // Estado
+      // ==============================
+      let semanas = [];
+      let semanaAtual = 1;
+
+      // ==============================
+      // Toast
+      // ==============================
+      function showToast(msg, dur = 3000) {
+        const t = document.getElementById("toast");
+        t.textContent = msg;
+        t.classList.add("show");
+        setTimeout(() => t.classList.remove("show"), dur);
+      }
+
+      // ==============================
+      // Criação do campo de semana no editor
+      // ==============================
+      function criarCampoSemana(num) {
+        const campo = document.createElement("div");
+        campo.className = "campo";
+        campo.dataset.semana = num;
+
+        campo.innerHTML = `
+          <div class="bloco titu"><p>Semana ${num}</p></div>
+
+          <div class="bloco">
+            <label>DATA | TÍTULO DA SEMANA</label>
+            <input type="text" class="inp-data" placeholder="ex: 03/03 - 09/03" />
+          </div>
+
+          <div class="bloco">
+            <label>PRESIDENTE</label>
+            <input type="text" class="inp-presidente" placeholder="Nome" />
+          </div>
+
+          <div class="bloco">
+            <label>ORADOR</label>
+            <input type="text" class="inp-orador" placeholder="Nome" />
+          </div>
+
+          <div class="bloco">
+            <label>CONGREGAÇÃO DO ORADOR</label>
+            <input type="text" class="inp-congregacao" placeholder="Nome" />
+          </div>
+
+          <div class="bloco">
+            <label>TEMA</label>
+            <input type="text" class="inp-tema" placeholder="Tema do discurso" />
+          </div>
+
+          <div class="bloco">
+            <label>LEITOR</label>
+            <input type="text" class="inp-leitor" placeholder="Nome" />
+          </div>
+
+          <div class="bloco">
+            <label>ORAÇÃO FINAL</label>
+            <input type="text" class="inp-orafinal" placeholder="Nome" />
+          </div>
+        `;
+
+        return campo;
+      }
+
+      // ==============================
+      // Inicialização
+      // ==============================
+      function inicializar() {
+        adicionarSemana();
+      }
+
+      function adicionarSemana() {
+        const num = semanaAtual;
+        const obj = {
+          num,
+          data: "",
+          presidente: "",
+          orador: "",
+          congregacao: "",
+          tema: "",
+          leitor: "",
+          orafinal: "",
+        };
+        semanas.push(obj);
+
+        const container = document.getElementById("semanas-container");
+        const isDesktop = window.innerWidth >= 1200;
+
+        if (isDesktop && semanaAtual > 1) {
+          // Desktop: salva dados do campo atual, substitui pelo novo
+          const campoAtual = container.querySelector(".campo");
+          if (campoAtual) salvarDadosDoCampo(campoAtual);
+          container.innerHTML = "";
+          const novoCampo = criarCampoSemana(num);
+          container.appendChild(novoCampo);
+          bindLiveUpdate(novoCampo, obj);
+          showToast(`Semana ${num} adicionada! Preencha os dados.`);
+        } else {
+          const novoCampo = criarCampoSemana(num);
+          container.appendChild(novoCampo);
+          bindLiveUpdate(novoCampo, obj);
+        }
+
+        semanaAtual++;
+        atualizarPreview();
+      }
+
+      // FIX: usa os seletores corretos e salva nos campos corretos
+      function salvarDadosDoCampo(campo) {
+        const num = parseInt(campo.dataset.semana);
+        const s = semanas.find((s) => s.num === num);
+        if (!s) return;
+        s.data = campo.querySelector(".inp-data").value;
+        s.presidente = campo.querySelector(".inp-presidente").value;
+        s.orador = campo.querySelector(".inp-orador").value;
+        s.congregacao = campo.querySelector(".inp-congregacao").value;
+        s.tema = campo.querySelector(".inp-tema").value;
+        s.leitor = campo.querySelector(".inp-leitor").value;
+        s.orafinal = campo.querySelector(".inp-orafinal").value;
+      }
+
+      // FIX: seletores alinhados com os inputs criados em criarCampoSemana
+      function bindLiveUpdate(campo, obj) {
+        const bind = (sel, key) => {
+          const el = campo.querySelector(sel);
+          if (!el) return;
+          el.addEventListener("input", (e) => {
+            obj[key] = e.target.value;
+            atualizarPreview();
+          });
+        };
+        bind(".inp-data", "data");
+        bind(".inp-presidente", "presidente");
+        bind(".inp-orador", "orador");
+        bind(".inp-congregacao", "congregacao");
+        bind(".inp-tema", "tema");
+        bind(".inp-leitor", "leitor");
+        bind(".inp-orafinal", "orafinal");
+      }
+
+      // ==============================
+      // Atualizar pré-visualização
+      // ==============================
+      function atualizarPreview() {
+        const isDesktop = window.innerWidth >= 1200;
+
+        // Sincroniza campos visíveis → estado
+        if (isDesktop) {
+          const campo = document.querySelector(".campo");
+          if (campo) salvarDadosDoCampo(campo);
+        } else {
+          document
+            .querySelectorAll(".campo")
+            .forEach((campo) => salvarDadosDoCampo(campo));
+        }
+
+        // Cabeçalho
+        document.getElementById("prev-cong").textContent =
+          document.getElementById("inp-cong").value;
+        document.getElementById("prev-mes").textContent = (
+          document.getElementById("inp-mes").value || ""
+        ).toUpperCase();
+        document.getElementById("prev-ano").textContent =
+          document.getElementById("inp-ano").value;
+
+        // Tabelas — uma por semana
+        const wrapper = document.getElementById("prev-tabelas");
+        wrapper.innerHTML = "";
+
+        semanas.forEach((s) => {
+          const bloco = document.createElement("div");
+          bloco.className = "semana-bloco";
+
+          const table = document.createElement("table");
+          table.className = "semanas-table";
+
+          // Linha título
+          const trTitulo = document.createElement("tr");
+          trTitulo.className = "semana-titulo";
+          const thTitulo = document.createElement("th");
+          thTitulo.colSpan = 99;
+          thTitulo.textContent = s.data ? `SEMANA: ${s.data}` : `SEMANA `;
+          trTitulo.appendChild(thTitulo);
+          table.appendChild(trTitulo);
+
+          // FIX: helper aceita string simples (não array)
+          function criarLinha(label, valor) {
+            const tr = document.createElement("tr");
+            const tdLabel = document.createElement("td");
+            tdLabel.className = "cat-label";
+            tdLabel.textContent = label;
+            tr.appendChild(tdLabel);
+            const tdVal = document.createElement("td");
+            tdVal.textContent = valor || "—";
+            tr.appendChild(tdVal);
+            return tr;
+          }
+
+          table.appendChild(criarLinha("PRESIDENTE:", s.presidente));
+          table.appendChild(criarLinha("ORADOR:", s.orador));
+          table.appendChild(criarLinha("CONGREGAÇÃO:", s.congregacao));
+          table.appendChild(criarLinha("TEMA:", s.tema));
+          table.appendChild(criarLinha("LEITOR:", s.leitor));
+          table.appendChild(criarLinha("ORAÇÃO FINAL:", s.orafinal));
+
+          bloco.appendChild(table);
+          wrapper.appendChild(bloco);
+        });
+      }
+
+      // ==============================
+      // Eventos do cabeçalho
+      // ==============================
+      document
+        .getElementById("inp-cong")
+        .addEventListener("input", atualizarPreview);
+      document
+        .getElementById("inp-mes")
+        .addEventListener("input", atualizarPreview);
+      document
+        .getElementById("inp-ano")
+        .addEventListener("input", atualizarPreview);
+
+      document.getElementById("btn-add-sem").addEventListener("click", () => {
+        const isDesktop = window.innerWidth >= 1200;
+        if (isDesktop) {
+          const campo = document.querySelector(".campo");
+          if (campo) salvarDadosDoCampo(campo);
+        }
+        adicionarSemana();
+      });
+
+      // ==============================
+      // Exportar helpers
+      // ==============================
+      const A4_W_PX = 794;
+      const A4_H_PX = 1123;
+
+      function prepararParaCaptura(el) {
+        const eraOculto = getComputedStyle(el).display === "none";
+        el.style.position = "fixed";
+        el.style.top = "-99999px";
+        el.style.left = "-99999px";
+        el.style.display = "block";
+        el.style.visibility = "visible";
+        el.style.zIndex = "-9999";
+        el.style.width = A4_W_PX + "px";
+        el.style.minHeight = A4_H_PX + "px";
+        return eraOculto;
+      }
+
+      function restaurarAposCaptura(el) {
+        el.style.position = "";
+        el.style.top = "";
+        el.style.left = "";
+        el.style.display = "";
+        el.style.visibility = "";
+        el.style.zIndex = "";
+        el.style.width = "";
+        el.style.minHeight = "";
+      }
+
+      // ==============================
+      // Exportar Imagem
+      // ==============================
+      async function exportarImagem() {
+        atualizarPreview();
+        const overlay = document.getElementById("loading-overlay");
+        document.getElementById("loading-msg").textContent = "Gerando imagem...";
+        overlay.classList.add("show");
+        const el = document.getElementById("previsu");
+        prepararParaCaptura(el);
+        await new Promise((r) => setTimeout(r, 200));
+        try {
+          const canvas = await html2canvas(el, {
+            scale: 5, useCORS: true, allowTaint: true,
+            backgroundColor: "#ffffff", width: A4_W_PX,
+            height: el.scrollHeight, windowWidth: A4_W_PX, logging: false,
+          });
+          const link = document.createElement("a");
+          const mes = document.getElementById("inp-mes").value.toLowerCase().replace(/\s+/g, "-") || "sem-mes";
+          const ano = document.getElementById("inp-ano").value || "sem-ano";
+          link.download = `Reunião Publica-${mes}-${ano}.png`;
+          link.href = canvas.toDataURL("image/png", 1.0);
+          link.click();
+          showToast("Imagem baixada com sucesso!");
+        } catch (err) {
+          showToast("Erro ao gerar imagem."); console.error(err);
+        } finally {
+          restaurarAposCaptura(el);
+          overlay.classList.remove("show");
+        }
+      }
+
+      // ==============================
+      // Exportar PDF
+      // ==============================
+      async function exportarPDF() {
+        atualizarPreview();
+        const overlay = document.getElementById("loading-overlay");
+        document.getElementById("loading-msg").textContent = "Gerando PDF...";
+        overlay.classList.add("show");
+        const el = document.getElementById("previsu");
+        prepararParaCaptura(el);
+        await new Promise((r) => setTimeout(r, 200));
+        try {
+          const { jsPDF } = window.jspdf;
+          const canvas = await html2canvas(el, {
+            scale: 3, useCORS: true, allowTaint: true,
+            backgroundColor: "#ffffff", width: A4_W_PX,
+            height: el.scrollHeight, windowWidth: A4_W_PX, logging: false,
+          });
+          const imgData = canvas.toDataURL("image/png", 1.0);
+          const pdf = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
+          const pageW = 210, pageH = 297, imgW = pageW;
+          const imgH = (canvas.height * imgW) / canvas.width;
+          let y = 0;
+          while (y < imgH) {
+            if (y > 0) pdf.addPage();
+            pdf.addImage(imgData, "PNG", 0, -y, imgW, imgH);
+            y += pageH;
+          }
+          const mes = document.getElementById("inp-mes").value.toLowerCase().replace(/\s+/g, "-") || "sem-mes";
+          const ano = document.getElementById("inp-ano").value || "sem-ano";
+          pdf.save(`Reunião-Pública-${mes}-${ano}.pdf`);
+          showToast("PDF baixado com sucesso!");
+        } catch (err) {
+          showToast("Erro ao gerar PDF."); console.error(err);
+        } finally {
+          restaurarAposCaptura(el);
+          overlay.classList.remove("show");
+        }
+      }
+
+      // ==============================
+      // Burger Menu
+      // ==============================
+      (function() {
+        const burgerBtn = document.getElementById("burger-btn");
+        const burgerMenu = document.getElementById("burger-menu");
+
+        function closeBurger() {
+          burgerMenu.classList.remove("open");
+        }
+
+        burgerBtn.addEventListener("click", function(e) {
+          e.stopPropagation();
+          burgerMenu.classList.toggle("open");
+        });
+
+        document.addEventListener("click", function(e) {
+          if (!burgerMenu.contains(e.target) && e.target !== burgerBtn) {
+            closeBurger();
+          }
+        });
+
+        // Salvar / Carregar
+        function salvarDados() {
+          var dados = {
+            congregacao: document.getElementById("inp-cong").value,
+            mes: document.getElementById("inp-mes").value,
+            ano: document.getElementById("inp-ano").value,
+            semanas: semanas,
+            semanaAtual: semanaAtual,
+          };
+          localStorage.setItem("reu-publica-dados", JSON.stringify(dados));
+          showToast("Dados salvos com sucesso!");
+        }
+
+        function carregarDados() {
+          var raw = localStorage.getItem("reu-publica-dados");
+          if (!raw) { showToast("Nenhum dado salvo encontrado."); return; }
+          try {
+            var dados = JSON.parse(raw);
+            document.getElementById("inp-cong").value = dados.congregacao || "";
+            document.getElementById("inp-mes").value = dados.mes || "";
+            document.getElementById("inp-ano").value = dados.ano || "";
+            semanas = dados.semanas || [];
+            semanaAtual = dados.semanaAtual || semanas.length + 1;
+            var container = document.getElementById("semanas-container");
+            container.innerHTML = "";
+            var isDesktop = window.innerWidth >= 1200;
+            if (isDesktop && semanas.length > 0) {
+              var ultimo = semanas[semanas.length - 1];
+              var campo = criarCampoSemana(ultimo.num);
+              container.appendChild(campo);
+              campo.querySelector(".inp-data").value = ultimo.data || "";
+              campo.querySelector(".inp-presidente").value = ultimo.presidente || "";
+              campo.querySelector(".inp-orador").value = ultimo.orador || "";
+              campo.querySelector(".inp-congregacao").value = ultimo.congregacao || "";
+              campo.querySelector(".inp-tema").value = ultimo.tema || "";
+              campo.querySelector(".inp-leitor").value = ultimo.leitor || "";
+              campo.querySelector(".inp-orafinal").value = ultimo.orafinal || "";
+              bindLiveUpdate(campo, ultimo);
+            } else {
+              semanas.forEach(function(s) {
+                var campo = criarCampoSemana(s.num);
+                container.appendChild(campo);
+                campo.querySelector(".inp-data").value = s.data || "";
+                campo.querySelector(".inp-presidente").value = s.presidente || "";
+                campo.querySelector(".inp-orador").value = s.orador || "";
+                campo.querySelector(".inp-congregacao").value = s.congregacao || "";
+                campo.querySelector(".inp-tema").value = s.tema || "";
+                campo.querySelector(".inp-leitor").value = s.leitor || "";
+                campo.querySelector(".inp-orafinal").value = s.orafinal || "";
+                bindLiveUpdate(campo, s);
+              });
+            }
+            atualizarPreview();
+            showToast("Dados carregados com sucesso!");
+          } catch(e) {
+            showToast("Erro ao carregar dados.");
+          }
+        }
+
+        // Pré-Visualizar (mobile)
+        function abrirPreVisualizacao() {
+          if (window.innerWidth >= 1200) {
+            showToast("A pré-visualização já está visível ao lado.");
+            return;
+          }
+          atualizarPreview();
+          var modal = document.getElementById("modal-preview");
+          if (modal) { modal.remove(); return; }
+          modal = document.createElement("div");
+          modal.id = "modal-preview";
+          modal.style.cssText = "position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:9997;overflow:auto;display:flex;justify-content:center;align-items:flex-start;padding:16px;";
+          var wrapper = document.createElement("div");
+          wrapper.style.cssText = "position:relative;background:#fff;border-radius:10px;padding:10px;overflow:auto;";
+          var closeBtn = document.createElement("button");
+          closeBtn.textContent = "X Fechar";
+          closeBtn.style.cssText = "display:block;margin-left:auto;background:#c0392b;color:#fff;border:none;border-radius:6px;padding:4px 10px;cursor:pointer;font-size:14px;margin-bottom:6px;";
+          closeBtn.onclick = function() { modal.remove(); };
+          wrapper.appendChild(closeBtn);
+          var prev = document.getElementById("previsu");
+          var clone = prev.cloneNode(true);
+          var scale = Math.min(1, (window.innerWidth - 52) / 794);
+          clone.style.cssText = "display:block;width:794px;transform-origin:top left;transform:scale(" + scale + ");margin-bottom:" + (-(794 * (1 - scale))) + "px;";
+          wrapper.appendChild(clone);
+          modal.appendChild(wrapper);
+          document.body.appendChild(modal);
+        }
+
+        // Imprimir
+        function imprimirPreview() {
+          atualizarPreview();
+          var el = document.getElementById("previsu");
+          prepararParaCaptura(el);
+          var conteudo = el.outerHTML;
+          restaurarAposCaptura(el);
+          var win = window.open("", "_blank");
+          win.document.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><style>body{margin:0;padding:0;}@page{size:A4;margin:0;}</style></head><body>' + conteudo + '<scr' + 'ipt>window.onload=function(){window.print();window.close();}</' + 'script></body></html>');
+          win.document.close();
+        }
+
+        // Bind todos os botões
+        [["hdr-salvar","mob-salvar"], salvarDados],
+        [["hdr-carregar","mob-carregar"], carregarDados],
+        [["hdr-preview","mob-preview"], abrirPreVisualizacao],
+        [["hdr-imprimir","mob-imprimir"], imprimirPreview],
+        [["hdr-pdf","mob-pdf"], exportarPDF],
+        [["hdr-foto","mob-foto"], exportarImagem];
+
+        var bindings = [
+          [["hdr-salvar","mob-salvar"], salvarDados],
+          [["hdr-carregar","mob-carregar"], carregarDados],
+          [["hdr-preview","mob-preview"], abrirPreVisualizacao],
+          [["hdr-imprimir","mob-imprimir"], imprimirPreview],
+          [["hdr-pdf","mob-pdf"], exportarPDF],
+          [["hdr-foto","mob-foto"], exportarImagem]
+        ];
+
+        bindings.forEach(function(pair) {
+          var ids = pair[0], fn = pair[1];
+          ids.forEach(function(id) {
+            var el = document.getElementById(id);
+            if (el) el.addEventListener("click", function() { closeBurger(); fn(); });
+          });
+        });
+      })();
+
+      // ==============================
+      // Init
+      // ==============================
+      inicializar();
+      atualizarPreview();
+    </script>
+  </body>
+</html>
